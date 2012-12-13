@@ -1,0 +1,1 @@
+<li><a class="sidebar_icon" href="<?= base_url() ?>home/links"><img src="<?= $this_module_assets ?>links_24.png"><span>Links</span></a></li>
