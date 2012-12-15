@@ -54,82 +54,25 @@ class Api extends Oauth_Controller
 		$this->response($message, 200);
 	} 
 
-	function view_get()
+    function shorten_link_authd_post()
     {
-    	$this->load->model('data_model');
-
-		$data	= $this->data_model->get_data($this->get('id'));    
-   		 	
-        if($data)
-        {
-            $message = array('status' => 'success', 'message' => 'Activity has been found', 'data' => $data);
-        }
-        else
-        {
-            $message = array('status' => 'error', 'message' => 'Could not find any Data');
-        }
-
-        $this->response($message, 200);
-    }
-
-    function create_authd_post()
-    {    
-    	$this->load->model('data_model');
-
-		$data = array(
-			'user_id'	=> $this->oauth_user_id,
-			'text'		=> $this->input->post('text')
-		);
+    	$this->load->model('links_model');
+    	$short_url = $this->links_model->add_link($this->input->post('url'), $this->oauth_user_id);
 
 		// Add Data
-		if ($add_data = $this->data_model->add_data($data))
+		if ($short_url)
 		{
-        	$message = array('status' => 'success', 'message' => 'Data successfully created', 'data' => $add_data);
+			$output_url = config_item('links_short_url').$short_url;
+
+        	$message = array('status' => 'success', 'message' => 'Short link successfully created', 'data' => $output_url);
         }
         else
         {
-	        $message = array('status' => 'error', 'message' => 'Oops unable to add data');
+	        $message = array('status' => 'error', 'message' => 'Oops unable to create shortened link');
         }
-	
+
         $this->response($message, 200);
     }
-    
-    function update_authd_get()
-    {
-    	$this->load->model('data_model');
-    
-    	$udpate_data = array(
-    		'text'	=> $this->input->post('text')
-    	);
-    
-		$update = $this->social_tools->update_data($this->get('id'), $update_data);			
-    	
-        if($update)
-        {
-            $message = array('status' => 'success', 'message' => 'Data was update');
-        }
-        else
-        {
-            $message = array('status' => 'error', 'message' => 'Could not update data');
-        } 
-
-        $this->response($message, 200);           
-    }  
-
-    function destroy_authd_get()
-    { 
-       	$this->load->model('data_model'); 
-         
-    	if ($this->data_model->delete_data($this->get('id')))
-    	{   	
-    		$message = array('status' => 'success', 'message' => 'Data was deleted');
-    	}
-    	else
-    	{
-    		$message = array('status' => 'error', 'message' => 'Oops Data was not deleted');        	
-    	}
-        
-        $this->response($message, 200);
-    }
+  
 
 }

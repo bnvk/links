@@ -12,14 +12,20 @@
 /* Settings */
 $config['links_settings']['widgets']			= 'TRUE';
 $config['links_settings']['enabled']			= 'TRUE';
+$config['links_settings']['short_url'] 			= '3';
 $config['links_settings']['create_permission'] 	= '3';
-$config['links_settings']['publish_permission']	= '2';
 $config['links_settings']['manage_permission']	= '2';
 
 
 /* Data Table */
 $config['database_links_links_table'] = array(
 'id' => array(
+	'type' 					=> 'INT',
+	'constraint' 			=> 11,
+	'unsigned' 				=> TRUE,
+	'auto_increment'		=> TRUE
+),
+'user_id' => array(
 	'type' 					=> 'INT',
 	'constraint' 			=> 11,
 	'unsigned' 				=> TRUE,

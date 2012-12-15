@@ -6,15 +6,17 @@
 		<p><?= form_dropdown('enabled', config_item('enable_disable'), $settings['links']['enabled']) ?></p>
 		<p><a href="<?= base_url() ?>api/<?= $this_module ?>/uninstall" id="app_uninstall" class="button_delete">Uninstall</a></p>
 	</div>
-	
+
+	<h3>Shortener</h3>
+
+	<p>Short URL
+ 	<input type="text" name="short_url" placeholder="http://shrt.ur" value="<?= $settings['links']['short_url'] ?>">
+	</p>
+
 	<h3>Permissions</h3>
 
 	<p>Create
 	<?= form_dropdown('create_permission', config_item('users_levels'), $settings['links']['create_permission']) ?>
-	</p>
-
-	<p>Publish
-	<?= form_dropdown('publish_permission', config_item('users_levels'), $settings['links']['publish_permission']) ?>	
 	</p>
 
 	<p>Manage All
