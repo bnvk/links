@@ -21,10 +21,16 @@ class Links_model extends CI_Model {
     /* Gets Links
      * @return Array object
      */
-    function get_links()
+    function get_links($user_id=FALSE)
     {
  		$this->db->select('*');
- 		$this->db->from('links');    
+ 		$this->db->from('links');
+ 		
+ 		if ($user_id)
+ 		{
+ 			$this->db->where('user_id', $user_id);
+ 		}
+ 		
  		$this->db->order_by('created', 'desc'); 
  		$result = $this->db->get();	
  		return $result->result();	      

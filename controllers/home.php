@@ -23,9 +23,9 @@ class Home extends Dashboard_Controller
 	
 	function index()
 	{
-		$this->data['sub_title'] = 'Custom';
+		$this->data['sub_title'] = 'Your Links';
 		
-		$this->data['links'] = $this->links_model->get_links();
+		$this->data['links'] = $this->links_model->get_links($this->session->userdata('user_id'));
 	
 		$this->render();
 	}
