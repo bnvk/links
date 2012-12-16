@@ -1,0 +1,12 @@
+{
+	"app":"links",
+	"name":"Links",
+	"created":"2012-12-15",
+	"updated":"2012-12-15",
+	"creator":"Brennan Novak",
+	"category":"tools",	
+	"links":{
+		"default":"home/links"
+	},
+	"launcher":"yes"
+}
